@@ -15,7 +15,7 @@
 <body>
 
     <div class="container">
-        <h1 class="display-2 mt-4 text-center">TODO LIST APP</h1>
+        <h1 class="display-2 mt-4 text-center">LISTA DE TAREAS</h1>
     </div>
 
     <div class="container">
@@ -25,27 +25,38 @@
                     <h3>Que vamos a hacer hoy?</h3>
                 </div>
                 <div class="row justify-content-center">
-                    <input type="text" class="form-control" placeholder="Descripcion de tarea" style="width:50%;">
-                    <button class="btn btn-primary">Agregar</button>
+                    <form action="{% url 'add' %}" method="POST" role="form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                {{ form.text }}
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" id="add-btn" type="submit">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row justify-content-center">
-                    <button class="btn btn-warning">Eliminar completadas</button>
-                    <button class="btn btn-danger">Eliminar todo</button>
+                    <a href="{% url 'deletecompleted' %}">
+                        <button class="btn btn-warning">Eliminar completadas</button>
+                    </a>
+                    <a href="{% url 'deleteall' %}">
+                        <button class="btn btn-danger">Eliminar todo</button>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="card">
-            <ul class="list-group t20">
+            <ul class="list-group">
                 {% for item in todo_items %}
-                    {% if item.completed %}
-                    <a href="#"><li class="list-group-item todo-completed">{{ item.text }}</li></a>
-                    {% else %}
-                    <a href="#"><li class="list-group-item">{{ item.text }}</li></a>
-                    {% endif %}
+                <a href="{% url 'completed' item.id %}" Class="{% if item.completed %}todo-completed {% endif %}">
+                    <li class="{% if item.completed %} list-group-item list-group-item-danger {% else %} list-group-item {%endif %}"">{{item.text}}</li>
+                </a>
                 {% endfor %}
             </ul>
         </div>
