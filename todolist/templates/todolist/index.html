@@ -34,8 +34,20 @@
                     <button class="btn btn-warning">Eliminar completadas</button>
                     <button class="btn btn-danger">Eliminar todo</button>
                 </div>
-
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card">
+            <ul class="list-group t20">
+                {% for item in todo_items %}
+                    {% if item.completed %}
+                    <a href="#"><li class="list-group-item todo-completed">{{ item.text }}</li></a>
+                    {% else %}
+                    <a href="#"><li class="list-group-item">{{ item.text }}</li></a>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </div>
     </div>
 
