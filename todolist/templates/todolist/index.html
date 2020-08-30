@@ -21,7 +21,7 @@
     <div class="container">
         <div class="card">
             <div class="card-title">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center pt-3 pb-3">
                     <h3>Que vamos a hacer hoy?</h3>
                 </div>
                 <div class="row justify-content-center">
@@ -31,26 +31,27 @@
                             <div class="input-group mb-3">
                                 {{ form.text }}
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-primary" id="add-btn" type="submit">Agregar</button>
+                                    <button class="btn btn-outline-success" id="add-btn" type="submit">Agregar</button>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="card-body">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center mb-4">
                     <a href="{% url 'deletecompleted' %}">
-                        <button class="btn btn-warning">Eliminar completadas</button>
+                        <button class="btn btn-outline-warning">Eliminar completadas</button>
                     </a>
                     <a href="{% url 'deleteall' %}">
-                        <button class="btn btn-danger">Eliminar todo</button>
+                        <button class="btn btn-outline-danger">Eliminar todo</button>
                     </a>
                 </div>
-            </div>
         </div>
     </div>
     <div class="container">
+        <h1 class="text-center mt-4">
+            Lista de tareas
+        </h1>
         <div class="card">
             <ul class="list-group">
                 {% for item in todo_items %}
